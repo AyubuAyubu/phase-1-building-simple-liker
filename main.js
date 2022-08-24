@@ -4,7 +4,25 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+const heartLikes = document.querySelectorAll('.like-glyph');
 
+let likeArticle = e => {
+   const heart = e.target;
+   mimicServerCall()
+   .then( ()=> {
+      if(heart.innerText === EMPTY_HEART){
+         heart.innerText = FULL_HEART;
+         heart.className = "activated-heart";
+      } else {
+         heart.innerText = EMPTY_HEART;
+         heart.className = "";
+      }
+   })
+}
+
+for (const glyph of heartLikes) {
+   glyph.addEventListener("click", likeArticle);
+ }
 
 
 //------------------------------------------------------------------------------
